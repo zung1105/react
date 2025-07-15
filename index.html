@@ -8,6 +8,26 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <script type="module" src="/src/main.jsx"></script>
+  <script>
+    const root= document.getElementById("root");
+    const tieude=document.createElement("h1");
+    tieude.textContent="Danh sach cong viec";
+    const ul=document.createElement("ul");
+    ul.textContent="Muc 1";
+    root.appendChild(tieude);
+    root.appendChild(ul);
+    const dscv=["hoc bai react", "hoan thanh lap trinh", "dọn dẹp bàn hoc"]
+    for(let i=0;i<dscv.length;i++)
+  {
+    const li=document.createElement("li");
+    li.textContent=dscv[i];
+    ul.appendChild(li);
+  }
+   const dongcuoi=document.createElement("p");
+   dongcuoi.textContent="Chúc bạn hoàn thành tốt công viêc";
+   root.appendChild(dongcuoi);
+
+  </script>
   </body>
 </html>
