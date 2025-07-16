@@ -41,3 +41,11 @@
 .read-the-docs {
   color: #888;
 } */
+
+img{
+  width: 600px;
+}
+
+li{
+  list-style: none;
+}
