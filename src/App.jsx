@@ -1,10 +1,10 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
 // // import MyComponet from './component/MyComponent'
 // function App() {
-//   // const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 // import pic1 from "../img/thumb-1920-939716.png";
 // import pic2 from "../img/thumb-1920-1123556.png";
 // import pic3 from "../img/thumb-1920-1274991.png";
@@ -43,43 +43,28 @@ function DiamicValue()
   );
 }
 
-
+const tghientai = new Date().getHours();
+// const tghientai=20;
 function App(){
-  function handleClick(selectedButton){
-        alert(`${selectedButton} được chọn`);
+  const[currenttime,setCurrenttime]=useState("Chào bạn")
+  function updateLoichao(tghientai)
+  {
+    if(tghientai>=5 && tghientai<=12)
+    {
+      return setCurrenttime("chào buổi sáng");
     }
+    else if(tghientai>12 && tghientai<=18)
+    {
+      return setCurrenttime("chào buổi chiều");
+    }
+    else
+    {
+       return setCurrenttime("chào buổi tối");
+    }
+  }
+  
   return (
-    // <div>
-    //   hello world
-    //   <MyComponet></MyComponet>
-    // </div>
     <>
-      {/* <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-    
-      {/* <h1>Đây là tiêu đề</h1>
-      <p>abc</p>
-      <Header></Header>
-      <Header/>
-      <Dscv/> */}
       <Header> </Header>
       <DiamicValue></DiamicValue>
       <ul>
@@ -105,11 +90,12 @@ function App(){
       <h2>Examples</h2>
       <li><button>Componnet</button></li>
       <li><button>JSX</button></li>
-      <li><button>Props</button></li>
-      <li><TabButton onSelect={()=>{return handleClick("State")}}>State</TabButton></li>
-      <li><TabButton>abc</TabButton></li>
+      <li><button onClick={updateLoichao(5)}>Props</button></li>
+      <li><TabButton onSelect={()=>{return updateLoichao(tghientai)}}>Cập nhật lời chào</TabButton></li>
+      <li><button onClick={()=>{return updateLoichao(6)}}>abc</button></li>
+      {currenttime}
     </>
   )
 }
-
+ 
 export default App;
