@@ -11,7 +11,7 @@ import './App.css'
 import pic4 from "../img/thumb-1920-1311265.png";
 // react\img\thumb-1920-1311265.png
 // react\img\thumb-1920-1274991.png
-import { myData } from '../data.js';
+import { myData,EXAMPLE } from '../data.js';
 import Header from './componnets/Header/Header.jsx';
 import MainContent from './componnets/MainContent/MainContent.jsx';
 import TabButton from './componnets/TabButton.jsx';
@@ -51,20 +51,47 @@ function App(){
   {
     if(tghientai>=5 && tghientai<=12)
     {
-      return setCurrenttime("chào buổi sáng");
+       setCurrenttime("chào buổi sáng");
     }
     else if(tghientai>12 && tghientai<=18)
     {
-      return setCurrenttime("chào buổi chiều");
+       setCurrenttime("chào buổi chiều");
     }
     else
     {
-       return setCurrenttime("chào buổi tối");
+       setCurrenttime("chào buổi tối");
     }
   }
-  
+
+  const[selectedTopic, setSelectedTopic]=useState();
+  function handelSelect(selectedTopic)
+  {
+    setSelectedTopic(selectedTopic);
+  }
+  function defaultdisplay()
+  {
+     if(!selectedTopic)
+     {
+      return <p> Vui lòng click vào nút để lựa chọn 1 chủ đề</p>;
+     }
+     else
+     {
+      return(
+      <div id="tab-content">
+        <h3>{EXAMPLE[selectedTopic].title}</h3>
+        <p>{EXAMPLE[selectedTopic].desc}</p>
+        <pre>
+          <code>{EXAMPLE[selectedTopic].code}</code>
+        </pre>
+       </div>
+      )
+     }
+  }
+
   return (
     <>
+    <main>
+    <section id="examples">
       <Header> </Header>
       <DiamicValue></DiamicValue>
       <ul>
@@ -87,13 +114,20 @@ function App(){
           desc="abcxyz"
         />
       </ul>
+      </section>
+      <section id="examples">
       <h2>Examples</h2>
-      <li><button>Componnet</button></li>
-      <li><button>JSX</button></li>
-      <li><button onClick={updateLoichao(5)}>Props</button></li>
-      <li><TabButton onSelect={()=>{return updateLoichao(tghientai)}}>Cập nhật lời chào</TabButton></li>
-      <li><button onClick={()=>{return updateLoichao(6)}}>abc</button></li>
+      <menu>
+      <li><button onClick={()=>handelSelect("components")}>Components</button></li>
+      <li><button onClick={()=>handelSelect("props")}>Props</button></li>
+      <li><button onClick={()=>handelSelect("state")}>State</button></li>
+      <li><TabButton onSelect={()=>{ updateLoichao(tghientai)}}>Cập nhật lời chào</TabButton></li>
+      <li><button onClick={()=>{updateLoichao(20)}}>abc</button></li>
       {currenttime}
+      </menu>
+       {defaultdisplay()}
+      </section>
+      </main>
     </>
   )
 }
