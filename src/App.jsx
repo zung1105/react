@@ -49,6 +49,7 @@ function App(){
   const[currenttime,setCurrenttime]=useState("Chào bạn")
   function updateLoichao(tghientai)
   {
+    // const[currenttime,setCurrenttime]=useState("Chào bạn")
     if(tghientai>=5 && tghientai<=12)
     {
        setCurrenttime("chào buổi sáng");
@@ -64,29 +65,30 @@ function App(){
   }
 
   const[selectedTopic, setSelectedTopic]=useState();
-  function handelSelect(selectedTopic)
+  function handelSelect(Topic)
   {
-    setSelectedTopic(selectedTopic);
+    // const[selectedTopic, setSelectedTopic]=useState();
+    setSelectedTopic(Topic);
   }
-  function defaultdisplay()
-  {
-     if(!selectedTopic)
-     {
-      return <p> Vui lòng click vào nút để lựa chọn 1 chủ đề</p>;
-     }
-     else
-     {
-      return(
-      <div id="tab-content">
-        <h3>{EXAMPLE[selectedTopic].title}</h3>
-        <p>{EXAMPLE[selectedTopic].desc}</p>
-        <pre>
-          <code>{EXAMPLE[selectedTopic].code}</code>
-        </pre>
-       </div>
-      )
-     }
-  }
+  // function defaultdisplay()
+  // {
+  //    if(!selectedTopic)
+  //    {
+  //     return <p> Vui lòng click vào nút để lựa chọn 1 chủ đề</p>;
+  //    }
+  //    else
+  //    {
+  //     return(
+  //     <div id="tab-content">
+  //       <h3>{EXAMPLE[selectedTopic].title}</h3>
+  //       <p>{EXAMPLE[selectedTopic].desc}</p>
+  //       <pre>
+  //         <code>{EXAMPLE[selectedTopic].code}</code>
+  //       </pre>
+  //      </div>
+  //     )
+  //    }
+  // }
 
   return (
     <>
@@ -125,7 +127,13 @@ function App(){
       <li><button onClick={()=>{updateLoichao(20)}}>abc</button></li>
       {currenttime}
       </menu>
-       {defaultdisplay()}
+       {!selectedTopic ? (<p> Vui lòng click vào nút để lựa chọn 1 chủ đề</p>) :(<div id="tab-content">
+        <h3>{EXAMPLE[selectedTopic].title}</h3>
+        <p>{EXAMPLE[selectedTopic].desc}</p>
+        <pre>
+          <code>{EXAMPLE[selectedTopic].code}</code>
+        </pre>
+       </div>)}
       </section>
       </main>
     </>
